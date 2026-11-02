@@ -1,0 +1,109 @@
+# Intelligent Campus Cyber Security Threat Detection System
+# Configuration File
+
+project:
+  name: "Intelligent Campus Cyber Security Threat Detection System"
+  version: "1.0.0"
+  description: "Supervised ML-based Network Intrusion & Threat Detection for University Campus Infrastructure"
+  author: "Campus Cyber Defense Research Lab"
+
+dataset:
+  raw_path: "data/raw/campus_network_traffic.csv"
+  train_path: "data/processed/train_data.csv"
+  test_path: "data/processed/test_data.csv"
+  scaler_path: "models/saved/scaler.joblib"
+  encoder_path: "models/saved/label_encoder.joblib"
+  features_path: "models/saved/feature_columns.json"
+  sample_size: 15000
+  test_size: 0.25
+  random_state: 42
+
+subnets:
+  dorms:
+    cidr: "10.10.0.0/16"
+    name: "Student Dormitories & Residential Wi-Fi"
+    risk_level: "Medium"
+  labs:
+    cidr: "10.20.0.0/16"
+    name: "Computer Science & Academic Research Labs"
+    risk_level: "High"
+  admin:
+    cidr: "10.30.0.0/16"
+    name: "Administrative & Financial Records Subnet"
+    risk_level: "Critical"
+  server_farm:
+    cidr: "10.40.0.0/16"
+    name: "University Data Center & Web Portals"
+    risk_level: "Critical"
+  guest_wifi:
+    cidr: "10.50.0.0/16"
+    name: "Campus Guest & Visitor Wi-Fi"
+    risk_level: "Medium"
+  external:
+    cidr: "0.0.0.0/0"
+    name: "External Internet"
+    risk_level: "Untrusted"
+
+threat_classes:
+  - "Benign"
+  - "DDoS_Flood"
+  - "Brute_Force"
+  - "Port_Scan"
+  - "Web_Attack"
+  - "Botnet_C2"
+  - "Data_Exfiltration"
+
+features:
+  numerical:
+    - "duration"
+    - "src_bytes"
+    - "dst_bytes"
+    - "src_pkts"
+    - "dst_pkts"
+    - "pkt_rate"
+    - "byte_rate"
+    - "avg_pkt_size"
+    - "failed_logins"
+    - "port_entropy"
+    - "payload_entropy"
+    - "syn_flag_count"
+    - "rst_flag_count"
+    - "ack_flag_count"
+    - "byte_ratio"
+  categorical:
+    - "protocol_type"
+    - "service"
+    - "conn_state"
+    - "src_subnet"
+    - "dst_subnet"
+    - "is_guest_network"
+
+models:
+  random_forest:
+    n_estimators: 120
+    max_depth: 18
+    min_samples_split: 4
+    class_weight: "balanced"
+    random_state: 42
+  gradient_boosting:
+    n_estimators: 100
+    learning_rate: 0.1
+    max_depth: 6
+    random_state: 42
+  decision_tree:
+    max_depth: 14
+    class_weight: "balanced"
+    random_state: 42
+  mlp:
+    hidden_layer_sizes: [64, 32]
+    max_iter: 200
+    random_state: 42
+  logistic_regression:
+    max_iter: 1000
+    class_weight: "balanced"
+    random_state: 42
+
+server:
+  host: "127.0.0.1"
+  port: 8000
+  reload: false

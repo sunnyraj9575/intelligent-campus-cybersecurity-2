@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelligent Campus Cyber Threat Detection System - SOC Console</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo-area">
+      <div class="logo-icon">🛡️</div>
+      <div class="logo-title">
+        <h1>Intelligent Campus Cyber Threat Detection</h1>
+        <p>Campus SOC & ML-Powered Intrusion Defense System</p>
+      </div>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-monitor">Live SOC Monitor</button>
+      <button class="tab-btn" data-tab="tab-predict">Flow Predictor</button>
+      <button class="tab-btn" data-tab="tab-topology">Campus Topology</button>
+      <button class="tab-btn" data-tab="tab-metrics">Model Benchmark</button>
+      <button class="tab-btn" data-tab="tab-mitigation">Mitigation Advisory</button>
+    </nav>
+
+    <div class="system-status">
+      <div class="status-badge">
+        <span class="status-pulse"></span>
+        DEFENSE ACTIVE
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Top Metrics Banner -->
+    <section class="metrics-banner">
+      <div class="metric-card blue">
+        <div class="metric-title">Monitored Flows</div>
+        <div class="metric-value" id="stat-total-flows">0</div>
+        <div class="metric-sub">Real-time campus network flows</div>
+      </div>
+      <div class="metric-card red">
+        <div class="metric-title">Threats Classified</div>
+        <div class="metric-value" id="stat-threats">0</div>
+        <div class="metric-sub" id="stat-threat-pct">0.0% of traffic</div>
+      </div>
+      <div class="metric-card purple">
+        <div class="metric-title">Critical Severity</div>
+        <div class="metric-value" id="stat-critical">0</div>
+        <div class="metric-sub">Tier-3/4 Containment triggers</div>
+      </div>
+      <div class="metric-card green">
+        <div class="metric-title">Champion Model</div>
+        <div class="metric-value" id="champion-model-name" style="font-size: 1.3rem;">Random Forest</div>
+        <div class="metric-sub">Accuracy: <span id="champion-acc">100%</span> | F1: <span id="champion-f1">1.000</span></div>
+      </div>
+    </section>
+
+    <!-- Tab 1: Live SOC Monitor -->
+    <div id="tab-monitor" class="tab-content active">
+      <div class="grid-2">
+        <!-- Live Table -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <span>📡</span> Live Campus Telemetry Stream
+            </div>
+            <div>
+              <button id="stream-toggle-btn" class="btn btn-danger" onclick="toggleStream()">
+                <span>⏸</span> Pause Stream
+              </button>
+            </div>
+          </div>
+          <div class="stream-table-container">
+            <table class="soc-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Source (Subnet)</th>
+                  <th>Destination</th>
+                  <th>Protocol</th>
+                  <th>Prediction</th>
+                  <th>Conf.</th>
+                  <th>Severity</th>
+                </tr>
+              </thead>
+              <tbody id="stream-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Charts Side Column -->
+        <div>
+          <div class="card" style="height: 250px;">
+            <div class="card-header">
+              <div class="card-title"><span>📊</span> Threat Distribution</div>
+            </div>
+            <div style="height: 170px; position: relative;">
+              <canvas id="threatDonutChart"></canvas>
+            </div>
+          </div>
+
+          <div class="card" style="height: 250px;">
+            <div class="card-header">
+              <div class="card-title"><span>🏢</span> Threats by Campus Subnet</div>
+            </div>
+            <div style="height: 170px; position: relative;">
+              <canvas id="subnetBarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Interactive Flow Predictor -->
+    <div id="tab-predict" class="tab-content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span>🎯</span> Custom Flow Threat Classifier</div>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem;">
+              Quick Attack Simulation Presets:
+            </div>
+            <div class="preset-bar">
+              <button type="button" class="preset-chip" data-preset="benign">Benign Browsing</button>
+              <button type="button" class="preset-chip" data-preset="ddos">SYN Flood DDoS</button>
+              <button type="button" class="preset-chip" data-preset="bruteforce">SSH Brute Force</button>
+              <button type="button" class="preset-chip" data-preset="portscan">Port Reconnaissance</button>
+              <button type="button" class="preset-chip" data-preset="webattack">Web SQL Injection</button>
+              <button type="button" class="preset-chip" data-preset="exfiltration">Data Exfiltration</button>
+            </div>
+          </div>
+
+          <form id="predict-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Flow Duration (s)</label>
+                <input id="input-duration" type="number" step="0.001" class="form-control" value="0.05" required>
+              </div>
+              <div class="form-group">
+                <label>Protocol</label>
+                <select id="input-protocol_type" class="form-control">
+                  <option value="TCP">TCP</option>
+                  <option value="UDP">UDP</option>
+                  <option value="ICMP">ICMP</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Service</label>
+                <select id="input-service" class="form-control">
+                  <option value="HTTPS">HTTPS</option>
+                  <option value="HTTP">HTTP</option>
+                  <option value="SSH">SSH</option>
+                  <option value="DNS">DNS</option>
+                  <option value="FTP">FTP</option>
+                  <option value="RDP">RDP</option>
+                  <option value="OTHER">OTHER</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Connection State</label>
+                <select id="input-conn_state" class="form-control">
+                  <option value="SF">SF (Normal Established)</option>
+                  <option value="S0">S0 (SYN Sent No Reply)</option>
+                  <option value="REJ">REJ (Rejected)</option>
+                  <option value="RSTO">RSTO (Reset by Originator)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Source Bytes</label>
+                <input id="input-src_bytes" type="number" class="form-control" value="450" required>
+              </div>
+              <div class="form-group">
+                <label>Destination Bytes</label>
+                <input id="input-dst_bytes" type="number" class="form-control" value="1200" required>
+              </div>
+              <div class="form-group">
+                <label>Source Packets</label>
+                <input id="input-src_pkts" type="number" class="form-control" value="12" required>
+              </div>
+              <div class="form-group">
+                <label>Destination Packets</label>
+                <input id="input-dst_pkts" type="number" class="form-control" value="10" required>
+              </div>
+              <div class="form-group">
+                <label>Packet Rate (pkts/s)</label>
+                <input id="input-pkt_rate" type="number" step="0.1" class="form-control" value="440.0" required>
+              </div>
+              <div class="form-group">
+                <label>Byte Rate (bytes/s)</label>
+                <input id="input-byte_rate" type="number" step="0.1" class="form-control" value="33000.0" required>
+              </div>
+              <div class="form-group">
+                <label>Average Packet Size</label>
+                <input id="input-avg_pkt_size" type="number" step="0.1" class="form-control" value="75.0" required>
+              </div>
+              <div class="form-group">
+                <label>Failed Logins</label>
+                <input id="input-failed_logins" type="number" class="form-control" value="0" required>
+              </div>
+              <div class="form-group">
+                <label>Port Entropy (0.0 - 1.0)</label>
+                <input id="input-port_entropy" type="number" step="0.01" class="form-control" value="0.15" required>
+              </div>
+              <div class="form-group">
+                <label>Payload Entropy (0.0 - 8.0)</label>
+                <input id="input-payload_entropy" type="number" step="0.01" class="form-control" value="4.20" required>
+              </div>
+              <div class="form-group">
+                <label>SYN Flag Count</label>
+                <input id="input-syn_flag_count" type="number" class="form-control" value="1" required>
+              </div>
+              <div class="form-group">
+                <label>RST Flag Count</label>
+                <input id="input-rst_flag_count" type="number" class="form-control" value="0" required>
+              </div>
+              <div class="form-group">
+                <label>ACK Flag Count</label>
+                <input id="input-ack_flag_count" type="number" class="form-control" value="9" required>
+              </div>
+              <div class="form-group">
+                <label>Source Campus Subnet</label>
+                <select id="input-src_subnet" class="form-control">
+                  <option value="dorms">Dormitories (10.10.0.0/16)</option>
+                  <option value="labs">CS Research Labs (10.20.0.0/16)</option>
+                  <option value="admin">Administration (10.30.0.0/16)</option>
+                  <option value="server_farm">Data Center (10.40.0.0/16)</option>
+                  <option value="guest_wifi">Guest Wi-Fi (10.50.0.0/16)</option>
+                  <option value="external">External Internet</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Destination Campus Subnet</label>
+                <select id="input-dst_subnet" class="form-control">
+                  <option value="server_farm">Data Center (10.40.0.0/16)</option>
+                  <option value="admin">Administration (10.30.0.0/16)</option>
+                  <option value="labs">CS Research Labs (10.20.0.0/16)</option>
+                  <option value="dorms">Dormitories (10.10.0.0/16)</option>
+                  <option value="external">External Internet</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Is Guest Wi-Fi</label>
+                <select id="input-is_guest_network" class="form-control">
+                  <option value="0">No (Authenticated Campus)</option>
+                  <option value="1">Yes (Unauthenticated Guest)</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; justify-content: center;">
+              <span>⚡</span> Run Machine Learning Threat Classifier
+            </button>
+          </form>
+        </div>
+
+        <!-- Prediction Result Output -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span>🔍</span> Threat Analysis & Containment</div>
+          </div>
+          <div id="predict-result-box">
+            <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+              Select an attack scenario preset or enter network flow parameters and click <strong>Run Classifier</strong> to view real-time analysis.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Campus Topology -->
+    <div id="tab-topology" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🏛️</span> University Campus Network Subnet Segmentation</div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+          The threat detection system continuously monitors traffic crossing campus subnet perimeters. Any anomaly crossing from untrusted segments (Guest/Dorms) toward critical administrative or server farm assets triggers automated containment.
+        </p>
+
+        <div class="subnet-grid">
+          <div class="subnet-card" style="border-left: 4px solid #f59e0b;">
+            <h3>Student Dormitories Wi-Fi</h3>
+            <div class="subnet-cidr">CIDR: 10.10.0.0/16</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;">
+              High volume residential traffic (gaming, streaming, P2P). Monitored for botnet participation, torrenting, and cryptomining beacons.
+            </p>
+            <div style="margin-top: 0.75rem;"><span class="badge badge-medium">Risk: Medium</span></div>
+          </div>
+
+          <div class="subnet-card" style="border-left: 4px solid #ef4444;">
+            <h3>CS & Academic Research Labs</h3>
+            <div class="subnet-cidr">CIDR: 10.20.0.0/16</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;">
+              Research clusters, Linux compute pools, student compilation. Monitored for internal port sweeps and unauthorized SSH access.
+            </p>
+            <div style="margin-top: 0.75rem;"><span class="badge badge-high">Risk: High</span></div>
+          </div>
+
+          <div class="subnet-card" style="border-left: 4px solid #dc2626;">
+            <h3>Administration & Registrar</h3>
+            <div class="subnet-cidr">CIDR: 10.30.0.0/16</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;">
+              Student grades, HR records, financial aid databases. Zero-trust isolation enforced; exfiltration immediately blocked.
+            </p>
+            <div style="margin-top: 0.75rem;"><span class="badge badge-critical">Risk: Critical</span></div>
+          </div>
+
+          <div class="subnet-card" style="border-left: 4px solid #dc2626;">
+            <h3>University Server Farm</h3>
+            <div class="subnet-cidr">CIDR: 10.40.0.0/16</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;">
+              Campus LMS (Moodle/Canvas), Student Portal, DNS, Mail. Primary target for volumetric DDoS floods during registration.
+            </p>
+            <div style="margin-top: 0.75rem;"><span class="badge badge-critical">Risk: Critical</span></div>
+          </div>
+
+          <div class="subnet-card" style="border-left: 4px solid #8b5cf6;">
+            <h3>Guest & Visitor Wi-Fi</h3>
+            <div class="subnet-cidr">CIDR: 10.50.0.0/16</div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem;">
+              Unauthenticated devices. Strict client-to-client isolation with no direct route to internal administrative subnets.
+            </p>
+            <div style="margin-top: 0.75rem;"><span class="badge badge-medium">Risk: Medium</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Model Benchmark -->
+    <div id="tab-metrics" class="tab-content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span>🧪</span> Supervised Machine Learning Benchmark Comparison</div>
+          </div>
+          <table class="soc-table">
+            <thead>
+              <tr>
+                <th>Model Architecture</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Macro</th>
+              </tr>
+            </thead>
+            <tbody id="benchmark-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><span>💡</span> Top Discriminative Network Features</div>
+          </div>
+          <div id="feature-importance-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Mitigation Advisory -->
+    <div id="tab-mitigation" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🛡️</span> Automated Threat Incident Playbook & Mitigation Rules</div>
+          <div>
+            <select id="mitigation-select" class="form-control" style="width: 220px;">
+              <option value="DDoS_Flood">DDoS Flood</option>
+              <option value="Brute_Force">Brute Force</option>
+              <option value="Port_Scan">Port Reconnaissance</option>
+              <option value="Web_Attack">Web Exploit (SQLi/XSS)</option>
+              <option value="Botnet_C2">Botnet C2 Beacon</option>
+              <option value="Data_Exfiltration">Data Exfiltration</option>
+              <option value="Benign">Benign Traffic</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <h2 id="mitigation-title" style="font-size: 1.3rem; margin-bottom: 0.35rem;">DDoS Flood</h2>
+            <div style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono); margin-bottom: 0.75rem;" id="mitigation-mitre">
+              T1498 - Network Denial of Service
+            </div>
+            <p id="mitigation-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;"></p>
+
+            <div style="margin-bottom: 1rem;">
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Recommended SOC Action</div>
+              <div id="mitigation-action" style="font-size: 0.9rem; font-weight: 600; color: #f3f4f6; margin-top: 0.25rem;"></div>
+            </div>
+
+            <div>
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Containment Level</div>
+              <div id="mitigation-tier" style="font-family: var(--font-mono); color: var(--accent-amber); margin-top: 0.25rem;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted);">Generated Firewall Rules</span>
+              <button class="btn btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="copyMitigationRule()">
+                📋 Copy Rules
+              </button>
+            </div>
+            <pre id="mitigation-rules" class="code-box"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

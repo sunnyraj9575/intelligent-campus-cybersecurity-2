@@ -1,0 +1,1038 @@
+{
+  "champion_model": "Random_Forest",
+  "classes": [
+    "Benign",
+    "Botnet_C2",
+    "Brute_Force",
+    "DDoS_Flood",
+    "Data_Exfiltration",
+    "Port_Scan",
+    "Web_Attack"
+  ],
+  "feature_count": 49,
+  "benchmark_results": {
+    "Random_Forest": {
+      "accuracy": 1.0,
+      "precision_macro": 1.0,
+      "recall_macro": 1.0,
+      "f1_macro": 1.0,
+      "f1_weighted": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          1875,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          225,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          375,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          375,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          225,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          375,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          300
+        ]
+      ],
+      "classes": [
+        "Benign",
+        "Botnet_C2",
+        "Brute_Force",
+        "DDoS_Flood",
+        "Data_Exfiltration",
+        "Port_Scan",
+        "Web_Attack"
+      ],
+      "per_class_report": {
+        "Benign": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 1875.0
+        },
+        "Botnet_C2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Brute_Force": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "DDoS_Flood": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Data_Exfiltration": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Port_Scan": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Web_Attack": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 300.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3750.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3750.0
+        }
+      },
+      "feature_importance": [
+        {
+          "feature": "src_bytes",
+          "importance": 0.0815
+        },
+        {
+          "feature": "payload_entropy",
+          "importance": 0.0782
+        },
+        {
+          "feature": "syn_to_ack_ratio",
+          "importance": 0.0744
+        },
+        {
+          "feature": "syn_flag_count",
+          "importance": 0.0724
+        },
+        {
+          "feature": "dst_bytes",
+          "importance": 0.0696
+        },
+        {
+          "feature": "src_pkts",
+          "importance": 0.0655
+        },
+        {
+          "feature": "failed_logins",
+          "importance": 0.0567
+        },
+        {
+          "feature": "bytes_per_pkt",
+          "importance": 0.0551
+        },
+        {
+          "feature": "dst_pkts",
+          "importance": 0.0505
+        },
+        {
+          "feature": "avg_pkt_size",
+          "importance": 0.0493
+        },
+        {
+          "feature": "ack_flag_count",
+          "importance": 0.0446
+        },
+        {
+          "feature": "is_cross_subnet_sensitive",
+          "importance": 0.0392
+        },
+        {
+          "feature": "pkt_ratio",
+          "importance": 0.0353
+        },
+        {
+          "feature": "port_entropy",
+          "importance": 0.0351
+        },
+        {
+          "feature": "dst_subnet_external",
+          "importance": 0.0298
+        }
+      ]
+    },
+    "Gradient_Boosting": {
+      "accuracy": 1.0,
+      "precision_macro": 1.0,
+      "recall_macro": 1.0,
+      "f1_macro": 1.0,
+      "f1_weighted": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          1875,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          225,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          375,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          375,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          225,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          375,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          300
+        ]
+      ],
+      "classes": [
+        "Benign",
+        "Botnet_C2",
+        "Brute_Force",
+        "DDoS_Flood",
+        "Data_Exfiltration",
+        "Port_Scan",
+        "Web_Attack"
+      ],
+      "per_class_report": {
+        "Benign": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 1875.0
+        },
+        "Botnet_C2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Brute_Force": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "DDoS_Flood": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Data_Exfiltration": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Port_Scan": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Web_Attack": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 300.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3750.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3750.0
+        }
+      },
+      "feature_importance": []
+    },
+    "Decision_Tree": {
+      "accuracy": 1.0,
+      "precision_macro": 1.0,
+      "recall_macro": 1.0,
+      "f1_macro": 1.0,
+      "f1_weighted": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          1875,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          225,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          375,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          375,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          225,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          375,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          300
+        ]
+      ],
+      "classes": [
+        "Benign",
+        "Botnet_C2",
+        "Brute_Force",
+        "DDoS_Flood",
+        "Data_Exfiltration",
+        "Port_Scan",
+        "Web_Attack"
+      ],
+      "per_class_report": {
+        "Benign": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 1875.0
+        },
+        "Botnet_C2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Brute_Force": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "DDoS_Flood": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Data_Exfiltration": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Port_Scan": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Web_Attack": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 300.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3750.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 3750.0
+        }
+      },
+      "feature_importance": [
+        {
+          "feature": "src_bytes",
+          "importance": 0.3333
+        },
+        {
+          "feature": "payload_entropy",
+          "importance": 0.1667
+        },
+        {
+          "feature": "failed_logins",
+          "importance": 0.1667
+        },
+        {
+          "feature": "src_pkts",
+          "importance": 0.1667
+        },
+        {
+          "feature": "is_cross_subnet_sensitive",
+          "importance": 0.1667
+        },
+        {
+          "feature": "avg_pkt_size",
+          "importance": 0.0
+        },
+        {
+          "feature": "port_scan_signal",
+          "importance": 0.0
+        },
+        {
+          "feature": "dst_subnet_labs",
+          "importance": 0.0
+        },
+        {
+          "feature": "src_subnet_dorms",
+          "importance": 0.0
+        },
+        {
+          "feature": "src_subnet_admin",
+          "importance": 0.0
+        },
+        {
+          "feature": "dst_subnet_external",
+          "importance": 0.0
+        },
+        {
+          "feature": "dst_subnet_admin",
+          "importance": 0.0
+        },
+        {
+          "feature": "src_subnet_server_farm",
+          "importance": 0.0
+        },
+        {
+          "feature": "src_subnet_labs",
+          "importance": 0.0
+        },
+        {
+          "feature": "src_subnet_guest_wifi",
+          "importance": 0.0
+        }
+      ]
+    },
+    "MLP_Neural_Net": {
+      "accuracy": 0.9995,
+      "precision_macro": 0.9991,
+      "recall_macro": 0.9998,
+      "f1_macro": 0.9994,
+      "f1_weighted": 0.9995,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          1873,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          225,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          375,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          375,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          225,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          375,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          300
+        ]
+      ],
+      "classes": [
+        "Benign",
+        "Botnet_C2",
+        "Brute_Force",
+        "DDoS_Flood",
+        "Data_Exfiltration",
+        "Port_Scan",
+        "Web_Attack"
+      ],
+      "per_class_report": {
+        "Benign": {
+          "precision": 1.0,
+          "recall": 0.9989333333333333,
+          "f1-score": 0.9994663820704376,
+          "support": 1875.0
+        },
+        "Botnet_C2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Brute_Force": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "DDoS_Flood": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Data_Exfiltration": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Port_Scan": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Web_Attack": {
+          "precision": 0.9933774834437086,
+          "recall": 1.0,
+          "f1-score": 0.9966777408637874,
+          "support": 300.0
+        },
+        "accuracy": 0.9994666666666666,
+        "macro avg": {
+          "precision": 0.9990539262062441,
+          "recall": 0.9998476190476191,
+          "f1-score": 0.999449160419175,
+          "support": 3750.0
+        },
+        "weighted avg": {
+          "precision": 0.9994701986754967,
+          "recall": 0.9994666666666666,
+          "f1-score": 0.999467410304322,
+          "support": 3750.0
+        }
+      },
+      "feature_importance": []
+    },
+    "Logistic_Regression": {
+      "accuracy": 0.9987,
+      "precision_macro": 0.9975,
+      "recall_macro": 0.9996,
+      "f1_macro": 0.9985,
+      "f1_weighted": 0.9987,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          1870,
+          1,
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          225,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          375,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          375,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          225,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          375,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          300
+        ]
+      ],
+      "classes": [
+        "Benign",
+        "Botnet_C2",
+        "Brute_Force",
+        "DDoS_Flood",
+        "Data_Exfiltration",
+        "Port_Scan",
+        "Web_Attack"
+      ],
+      "per_class_report": {
+        "Benign": {
+          "precision": 1.0,
+          "recall": 0.9973333333333333,
+          "f1-score": 0.9986648865153538,
+          "support": 1875.0
+        },
+        "Botnet_C2": {
+          "precision": 0.995575221238938,
+          "recall": 1.0,
+          "f1-score": 0.9977827050997783,
+          "support": 225.0
+        },
+        "Brute_Force": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "DDoS_Flood": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Data_Exfiltration": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 225.0
+        },
+        "Port_Scan": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 375.0
+        },
+        "Web_Attack": {
+          "precision": 0.9868421052631579,
+          "recall": 1.0,
+          "f1-score": 0.9933774834437086,
+          "support": 300.0
+        },
+        "accuracy": 0.9986666666666667,
+        "macro avg": {
+          "precision": 0.9974881895002994,
+          "recall": 0.9996190476190476,
+          "f1-score": 0.9985464392941201,
+          "support": 3750.0
+        },
+        "weighted avg": {
+          "precision": 0.998681881695389,
+          "recall": 0.9986666666666667,
+          "f1-score": 0.9986696042391603,
+          "support": 3750.0
+        }
+      },
+      "feature_importance": []
+    }
+  },
+  "best_model_metrics": {
+    "accuracy": 1.0,
+    "precision_macro": 1.0,
+    "recall_macro": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "roc_auc": 1.0,
+    "confusion_matrix": [
+      [
+        1875,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        225,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        375,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        375,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        225,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        375,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        300
+      ]
+    ],
+    "classes": [
+      "Benign",
+      "Botnet_C2",
+      "Brute_Force",
+      "DDoS_Flood",
+      "Data_Exfiltration",
+      "Port_Scan",
+      "Web_Attack"
+    ],
+    "per_class_report": {
+      "Benign": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1875.0
+      },
+      "Botnet_C2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 225.0
+      },
+      "Brute_Force": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 375.0
+      },
+      "DDoS_Flood": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 375.0
+      },
+      "Data_Exfiltration": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 225.0
+      },
+      "Port_Scan": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 375.0
+      },
+      "Web_Attack": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 300.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3750.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3750.0
+      }
+    },
+    "feature_importance": [
+      {
+        "feature": "src_bytes",
+        "importance": 0.0815
+      },
+      {
+        "feature": "payload_entropy",
+        "importance": 0.0782
+      },
+      {
+        "feature": "syn_to_ack_ratio",
+        "importance": 0.0744
+      },
+      {
+        "feature": "syn_flag_count",
+        "importance": 0.0724
+      },
+      {
+        "feature": "dst_bytes",
+        "importance": 0.0696
+      },
+      {
+        "feature": "src_pkts",
+        "importance": 0.0655
+      },
+      {
+        "feature": "failed_logins",
+        "importance": 0.0567
+      },
+      {
+        "feature": "bytes_per_pkt",
+        "importance": 0.0551
+      },
+      {
+        "feature": "dst_pkts",
+        "importance": 0.0505
+      },
+      {
+        "feature": "avg_pkt_size",
+        "importance": 0.0493
+      },
+      {
+        "feature": "ack_flag_count",
+        "importance": 0.0446
+      },
+      {
+        "feature": "is_cross_subnet_sensitive",
+        "importance": 0.0392
+      },
+      {
+        "feature": "pkt_ratio",
+        "importance": 0.0353
+      },
+      {
+        "feature": "port_entropy",
+        "importance": 0.0351
+      },
+      {
+        "feature": "dst_subnet_external",
+        "importance": 0.0298
+      }
+    ]
+  }
+}
