@@ -1,5 +1,7 @@
 @echo off
 title Campus Cyber Threat Detection - SOC Dashboard
+cd /d "%~dp0"
+set PYTHONPATH=%~dp0
 echo ======================================================================
 echo Starting Intelligent Campus Cyber Threat Detection SOC Dashboard...
 echo ======================================================================
